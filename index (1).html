@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoCraftDigital · AI Command Center</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0a0a0f;
+  color: white;
+  text-align: center;
+  padding: 60px;
+}
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background: #c8f55a;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.status {
+  margin-top: 20px;
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+
+<h1>EcoCraftDigital AI Command Center</h1>
+<p>חיבור Etsy OAuth דרך Vercel</p>
+
+<button onclick="window.location.href='/api/auth/etsy/start'">
+▶ התחברי ל‑Etsy
+</button>
+
+<div class="status" id="status">סטטוס: לא מחובר</div>
+
+<script>
+async function checkStatus() {
+  try {
+    const res = await fetch('/api/etsy/status');
+    const data = await res.json();
+    if (data.connected) {
+      document.getElementById('status').innerText = "סטטוס: מחובר ל‑Etsy ✅";
+    }
+  } catch (e) {}
+}
+checkStatus();
+</script>
+
+</body>
+</html>
